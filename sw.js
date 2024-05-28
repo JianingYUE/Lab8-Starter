@@ -20,7 +20,10 @@ self.addEventListener('install', function (event) {
         'https://adarsh249.github.io/Lab8-Starter/recipes/3_moms-cornbread-stuffing.json',
         'https://adarsh249.github.io/Lab8-Starter/recipes/4_50-indulgent-thanksgiving-side-dishes-for-any-holiday-gathering.json',
         'https://adarsh249.github.io/Lab8-Starter/recipes/5_healthy-thanksgiving-recipe-crockpot-turkey-breast.json',
-        'https://adarsh249.github.io/Lab8-Starter/recipes/6_one-pot-thanksgiving-dinner.json'
+        'https://adarsh249.github.io/Lab8-Starter/recipes/6_one-pot-thanksgiving-dinner.json',
+        'https://jianingyue.github.io/Lab8-Starter/assets/images/1_spooky-ghost-cookies.jpeg',
+        'https://jianingyue.github.io/Lab8-Starter/assets/images/2_frightfully-easy-ghost-cookies.jpeg',
+        'https://jianingyue.github.io/Lab8-Starter/assets/images/3_ingredient-ghost-halloween-cookies.jpeg'
       ]);
     })
   );
