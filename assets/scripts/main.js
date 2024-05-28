@@ -45,6 +45,19 @@ function initializeServiceWorker() {
   // We first must register our ServiceWorker here before any of the code in
   // sw.js is executed.
   // B1. TODO - Check if 'serviceWorker' is supported in the current browser
+  if ('serviceWorker' in navigator){
+    window.addEventListener('load',() => {
+      navigator.serviceWorker.register('./sw.js')
+      .then(registration =>{
+        console.log('Service Worker registered with scope:', registration.scope);
+      })
+      .catch(error => {
+        console.error('Service Worker registration failed:', error);
+      });
+    });
+    }else {
+      console.log('Service Workers are not supported in this browser.');
+    }
   // B2. TODO - Listen for the 'load' event on the window object.
   // Steps B3-B6 will be *inside* the event listener's function created in B2
   // B3. TODO - Register './sw.js' as a service worker (The MDN article
@@ -71,13 +84,34 @@ async function getRecipes() {
   /**************************/
   // The rest of this method will be concerned with requesting the recipes
   // from the network
+  const localRecipes = localStorage.getItem('recipes');
+  if (localRecipes){
+    return JSON.parse(localRecipes);
+  }
   // A2. TODO - Create an empty array to hold the recipes that you will fetch
+  const returnRecipes = [];
   // A3. TODO - Return a new Promise. If you are unfamiliar with promises, MDN
   //            has a great article on them. A promise takes one parameter - A
   //            function (we call these callback functions). That function will
   //            take two parameters - resolve, and reject. These are functions
   //            you can call to either resolve the Promise or Reject it.
   /**************************/
+  return new Promise(async(resolve, reject) => {
+    for(const url of RECIPE_URLS){
+      try{
+        const response = await fetch(url);
+        const recipe = await response.json();
+        returnRecipes.push(recipe);
+        if(returnRecipes.length === RECIPE_URLS.length){
+          saveRecipesToStorage(returnRecipes);
+          resolve(returnRecipes);
+        }
+      }catch(error){
+        console.error('Error fetching recipe', error);
+        reject(error);
+      }
+    }
+  });
   // A4-A11 will all be *inside* the callback function we passed to the Promise
   // we're returning
   /**************************/
