@@ -1,1 +1,4 @@
 # Lab8-Starter
+Jianing Yue(myself)
+Graceful degradation and service workers are related because both are designed to improve the resiliency and performance of web applications. Graceful degradation involves starting with the highest level of functionality and ensuring that the application still works properly under less than ideal conditions, such as using older browsers or limited network connections. Service workers do this by enabling offline functionality and reducing reliance on network availability. They intercept network requests and manage resource caches, allowing applications to run smoothly even when the network is slow or unavailable. This ensures a better user experience by providing consistent access to the application, in line with the principles of graceful degradation.
+https://jianingyue.github.io/Lab8-Starter/
